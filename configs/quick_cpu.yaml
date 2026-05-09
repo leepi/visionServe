@@ -1,0 +1,23 @@
+model:
+  backbone: resnet18
+  num_classes: 10
+  pretrained: true
+  dropout: 0.1
+
+data:
+  dataset: cifar10
+  data_dir: ./data
+  image_size: 64
+  batch_size: 256
+  num_workers: 2
+
+train:
+  epochs: 2
+  lr: 0.002
+  optimizer: adamw
+  scheduler: cosine
+  label_smoothing: 0.1
+  seed: 42
+  device: cpu
+  output_dir: ./checkpoints
+  early_stopping_patience: 99

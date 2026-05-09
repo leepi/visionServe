@@ -1,0 +1,28 @@
+# Template for training on your own ImageFolder-style dataset.
+# Layout:
+#   /path/to/train/<class_a>/img1.jpg, img2.jpg, ...
+#   /path/to/train/<class_b>/...
+#   /path/to/val/<class_a>/...
+
+model:
+  backbone: resnet18
+  pretrained: true
+  dropout: 0.1
+  # num_classes is inferred from the dataset
+
+data:
+  dataset: imagefolder
+  train_dir: /path/to/train
+  val_dir: /path/to/val
+  image_size: 224
+  batch_size: 64
+  num_workers: 4
+  val_split: 0.0
+
+train:
+  epochs: 20
+  lr: 0.0005
+  optimizer: adamw
+  scheduler: cosine
+  device: auto
+  output_dir: ./checkpoints/custom

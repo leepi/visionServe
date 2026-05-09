@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtualenvs
+.venv
+venv/
+env/
+ENV/
+
+# Testing / coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+coverage.xml
+*.cover
+
+# Jupyter
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific
+data/
+runs/
+eval_output/
+*.log
+.env
+.env.local
+
+# Checkpoints — keep README and best.pt; ignore intermediate artifacts
+checkpoints/*.tmp
+checkpoints/history.json
+checkpoints/config.yaml
+!checkpoints/best.pt
+!checkpoints/README.md
+
+# Models / large artifacts
+*.onnx
+*.pth
+!checkpoints/best.pt

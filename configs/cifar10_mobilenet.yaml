@@ -1,0 +1,23 @@
+model:
+  backbone: mobilenet_v3_small
+  num_classes: 10
+  pretrained: true
+  dropout: 0.2
+
+data:
+  dataset: cifar10
+  data_dir: ./data
+  image_size: 224
+  batch_size: 256
+  num_workers: 4
+
+train:
+  epochs: 10
+  lr: 0.001
+  weight_decay: 0.0001
+  optimizer: adamw
+  scheduler: cosine
+  label_smoothing: 0.1
+  seed: 42
+  device: auto
+  output_dir: ./checkpoints

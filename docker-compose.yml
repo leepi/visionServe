@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    image: visionserve:latest
+    container_name: visionserve-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      VISIONSERVE_CHECKPOINT_PATH: /app/checkpoints/best.pt
+      VISIONSERVE_DEVICE: cpu
+      VISIONSERVE_LOG_LEVEL: INFO
+    volumes:
+      - ./checkpoints:/app/checkpoints:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
