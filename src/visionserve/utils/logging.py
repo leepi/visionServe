@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import sys
 
-
 _FORMATTER = logging.Formatter(
     fmt="%(asctime)s | %(levelname)-7s | %(name)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",

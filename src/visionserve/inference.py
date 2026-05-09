@@ -69,7 +69,7 @@ class InferenceEngine:
         values, indices = probs.topk(top_k)
         return [
             {"class": self.class_names[i.item()], "probability": float(v.item())}
-            for v, i in zip(values, indices)
+            for v, i in zip(values, indices, strict=False)
         ]
 
     @torch.no_grad()
@@ -86,11 +86,11 @@ class InferenceEngine:
         values, indices = probs.topk(top_k, dim=1)
 
         results = []
-        for vals, idxs in zip(values, indices):
+        for vals, idxs in zip(values, indices, strict=False):
             results.append(
                 [
                     {"class": self.class_names[i.item()], "probability": float(v.item())}
-                    for v, i in zip(vals, idxs)
+                    for v, i in zip(vals, idxs, strict=False)
                 ]
             )
         return results

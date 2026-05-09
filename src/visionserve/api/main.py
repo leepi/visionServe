@@ -15,8 +15,8 @@ from visionserve import __version__
 from visionserve.api.schemas import (
     BatchPredictResponse,
     HealthResponse,
-    PredictResponse,
     Prediction,
+    PredictResponse,
 )
 from visionserve.api.settings import get_settings
 from visionserve.inference import InferenceEngine
@@ -64,7 +64,7 @@ async def lifespan(app: FastAPI):
                 f"Model ready: backbone={_engine.backbone} "
                 f"classes={len(_engine.class_names)} device={_engine.device}"
             )
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error(f"Failed to load checkpoint: {e}")
             _engine = None
     else:
@@ -170,7 +170,7 @@ async def predict(
     except HTTPException:
         REQUEST_COUNT.labels(endpoint="/predict", status="4xx").inc()
         raise
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         REQUEST_COUNT.labels(endpoint="/predict", status="500").inc()
         logger.exception("Prediction failed")
         raise HTTPException(status_code=500, detail=f"Inference error: {e}") from e
@@ -217,7 +217,7 @@ async def predict_batch(
     except HTTPException:
         REQUEST_COUNT.labels(endpoint="/predict/batch", status="4xx").inc()
         raise
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         REQUEST_COUNT.labels(endpoint="/predict/batch", status="500").inc()
         logger.exception("Batch prediction failed")
         raise HTTPException(status_code=500, detail=f"Inference error: {e}") from e

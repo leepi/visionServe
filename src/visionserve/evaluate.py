@@ -44,7 +44,7 @@ def compute_metrics(
             topk_correct[k] += correct_k
         # confusion
         top1 = pred[:, 0].cpu()
-        for t, p in zip(targets.cpu().tolist(), top1.tolist()):
+        for t, p in zip(targets.cpu().tolist(), top1.tolist(), strict=False):
             confusion[t, p] += 1
         total += targets.size(0)
 
@@ -56,7 +56,7 @@ def compute_metrics(
     recall = (tp / (tp + fn).clamp(min=1)).tolist()
     f1 = [
         (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
-        for p, r in zip(precision, recall)
+        for p, r in zip(precision, recall, strict=False)
     ]
 
     return {

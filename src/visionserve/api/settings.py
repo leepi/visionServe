@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     max_batch_size: int = 32
     max_image_size_mb: int = 10
     cors_origins: list[str] = ["*"]
-    host: str = "0.0.0.0"  # noqa: S104 — intentional for containerized service
+    host: str = "0.0.0.0"
     port: int = 8000
     log_level: str = "INFO"
 

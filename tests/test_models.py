@@ -46,6 +46,6 @@ def test_load_checkpoint(tmp_path):
     load_checkpoint(model_b, str(ckpt_path), device="cpu")
 
     # Verify weights match
-    for (n1, p1), (n2, p2) in zip(model_a.named_parameters(), model_b.named_parameters()):
+    for (n1, p1), (n2, p2) in zip(model_a.named_parameters(), model_b.named_parameters(), strict=False):
         assert n1 == n2
         assert torch.equal(p1, p2)

@@ -53,10 +53,10 @@ coverage.xml
 .DS_Store
 Thumbs.db
 
-# Project-specific
-data/
-runs/
-eval_output/
+# Project-specific (anchored to repo root so they don't match src/visionserve/data/)
+/data/
+/runs/
+/eval_output/
 *.log
 .env
 .env.local
